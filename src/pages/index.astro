@@ -1,5 +1,11 @@
 ---
+import { getCollection } from "astro:content"
+
 import Layout from "@layouts/Layout.astro"
+
+const blogs = await getCollection("blogs", ({ data }) => {
+	return data.draft === false
+})
 ---
 
 <Layout
@@ -7,4 +13,16 @@ import Layout from "@layouts/Layout.astro"
 	description="Welcome to Pranjal's digital garden"
 >
 	<p>Welcome to Pranjal's digital garden 🌱</p>
+
+	<!-- Blog posts -->
+	<div>
+		{
+			blogs.map(blog => {
+				return <div>
+					<a href={"/blogs/" + blog.slug}>{blog.data.title}</a>
+				</div>
+			})
+		}
+	</div>
+	
 </Layout>
