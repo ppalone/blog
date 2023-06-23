@@ -1,0 +1,28 @@
+---
+import Base from "./Base.astro";
+const { title, description } = Astro.props;
+---
+
+<Base title={title} description={description}>
+  <!-- root -->
+  <div id="root">
+    <!-- Container -->
+    <div class="container">
+      <!-- Navbar -->
+      <nav>ppx</nav>
+
+      <!-- Main -->
+      <main>
+        <slot />
+      </main>
+
+      <footer>
+        <div>Copyright &copy; 2023 Pranjal</div>
+        <div>
+          <a href="https://github.com/ppalone/blog">GitHub</a>
+          <a href="/rss">rss</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+</Base>
