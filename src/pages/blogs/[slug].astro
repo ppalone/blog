@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import { getCollection } from "astro:content";
 
 import BlogLayout from "@layouts/BlogLayout.astro";
+import PageHeadings from "@components/vue/PageHeadings.vue";
 
 interface Props {
   blog: CollectionEntry<"blogs">
@@ -23,9 +24,48 @@ export async function getStaticPaths() {
 }
 
 const { blog } = Astro.props
-const { Content } = await blog.render()
+const { Content, headings } = await blog.render()
 ---
 
 <BlogLayout title={blog.data.title} description={blog.data.description}>
-  <Content />
+  <div>
+    <header>
+      <h1>{blog.data.title}</h1>
+      <div>
+        Published on {blog.data.date.toDateString()}
+      </div>
+    </header>
+    <div class="markdown-content">
+      <Content />
+    </div>
+    <div>
+      <a href="/">cd ..</a>
+    </div>
+  </div>
+  <PageHeadings client:load headings={headings} />
 </BlogLayout>
+
+<script>
+  const snippets = document.querySelectorAll(".markdown-content pre")
+
+  const copy = async (e) => {
+    const code = e.target.parentElement.querySelector("code")
+    try {
+      await navigator.clipboard.writeText(code.textContent)
+      e.target.textContent = "Copied!"
+      setTimeout(() => {
+        e.target.textContent = "Copy"
+      }, 1500)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  snippets.forEach(snippet => {
+    const button = document.createElement("button")
+    button.textContent = "Copy"
+    button.classList.add("copy-code")
+    button.addEventListener("click", copy)
+    snippet.appendChild(button)
+  })
+</script>
