@@ -1,26 +1,30 @@
 ---
-import { getCollection } from "astro:content"
+import { getCollection, getEntry } from "astro:content"
 
 import Layout from "@layouts/Layout.astro"
 
+// get all blogs
 const blogs = await getCollection("blogs", ({ data }) => {
 	return data.draft === false
 })
+
+// sort blogs according to date
 const sorted = blogs.sort((a, b) => a.data.date.getTime() - b.data.date.getTime())
+
+const intro = await getEntry("info", "intro")
+const { Content: Intro } = await intro.render()
 ---
 
 <Layout
-	title="Blog | ppalone"
+	title="ppalone/blog"
 	description="Welcome to Pranjal's digital garden"
 >
-	<p>Welcome to Pranjal's digital garden 🌱</p>
-
-	<p>Hi there! I'm Pranjal Alone aka ppalone. I'm full stack web developer. I made this blog to share my learnings with the world.
-
+	<p class="my-4">
+		<Intro />
 	</p>
 
 	<!-- Blog posts -->
-	<div>
+	<div class="my-4">
 		<div>
 			<h2>Blog</h2>
 		</div>

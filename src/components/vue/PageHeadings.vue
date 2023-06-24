@@ -1,11 +1,14 @@
 <template>
-  <div class="page-headings">
-    <div>
+  <div class="flex flex-col w-full">
+    <div class="px-4 py-2">
       <p>On this page</p>
     </div>
-    <div class="headings">
+    <div class="flex flex-col w-full">
       <a v-for="heading in headings" :href="`#${heading.slug}`"
-        :class="['heading', (current === heading.slug ? 'active' : '')]">
+        :class="[
+          'w-full py-2 px-4 border-l-2 transition', 
+          (current === heading.slug ? 'bg-gray-200 border-gray-200' : '')
+        ]">
         {{ heading.text }}
       </a>
     </div>
@@ -25,7 +28,7 @@ onMounted(() => {
       }
     })
   }, {
-    rootMargin: "0px 0px -80% 0px"
+    rootMargin: "0px 0px -75% 0px"
   })
 
   props.headings.forEach(heading => {
@@ -34,10 +37,3 @@ onMounted(() => {
   })
 })
 </script>
-
-<style>
-a.active {
-  background-color: rgb(200, 200, 200);
-  border-left: 2px solid rgb(200, 200, 200);
-}
-</style>

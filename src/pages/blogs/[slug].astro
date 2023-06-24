@@ -1,71 +1,77 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
 import BlogLayout from "@layouts/BlogLayout.astro";
 import PageHeadings from "@components/vue/PageHeadings.vue";
 
 interface Props {
-  blog: CollectionEntry<"blogs">
+  blog: CollectionEntry<"blogs">;
 }
 
 export async function getStaticPaths() {
   const blogs = await getCollection("blogs", ({ data }) => {
-    return data.draft === false
-  })
+    return data.draft === false;
+  });
   return blogs.map((blog: CollectionEntry<"blogs">) => ({
     params: {
       slug: blog.slug,
     },
     props: {
-      blog: blog
-    }
-  }))
+      blog: blog,
+    },
+  }));
 }
 
-const { blog } = Astro.props
-const { Content, headings } = await blog.render()
+const { blog } = Astro.props;
+const { Content, headings } = await blog.render();
 ---
 
 <BlogLayout title={blog.data.title} description={blog.data.description}>
   <div>
     <header>
-      <h1>{blog.data.title}</h1>
-      <div>
-        Published on {blog.data.date.toDateString()}
+      <h1 class="text-4xl font-bold py-2">{blog.data.title}</h1>
+      <div class="text-gray-500">
+        {blog.data.date.toDateString()}
       </div>
     </header>
-    <div class="markdown-content">
-      <Content />
+    <div class="flex gap-2 items-start">
+      <div class="markdown-content w-full md:w-4/5">
+        <Content />
+      </div>
+      <div class="p-2 hidden overflow-y-auto md:flex md:w-1/5 md:sticky md:top-0">
+        <PageHeadings client:load headings={headings} />
+      </div>
     </div>
-    <div>
-      <a href="/">cd ..</a>
+    <div class="my-2">
+      <a href="/" title="Go home" class="font-mono p-1 bg-gray-100 rounded"
+        >cd ..</a
+      >
     </div>
   </div>
-  <PageHeadings client:load headings={headings} />
 </BlogLayout>
 
 <script>
-  const snippets = document.querySelectorAll(".markdown-content pre")
+  const snippets = document.querySelectorAll(".markdown-content pre");
 
   const copy = async (e) => {
-    const code = e.target.parentElement.querySelector("code")
+    const code = e.target.parentElement.querySelector("code");
     try {
-      await navigator.clipboard.writeText(code.textContent)
-      e.target.textContent = "Copied!"
+      await navigator.clipboard.writeText(code.textContent);
+      e.target.textContent = "Copied!";
       setTimeout(() => {
-        e.target.textContent = "Copy"
-      }, 1500)
+        e.target.textContent = "Copy";
+      }, 1500);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-  }
+  };
 
-  snippets.forEach(snippet => {
-    const button = document.createElement("button")
-    button.textContent = "Copy"
-    button.classList.add("copy-code")
-    button.addEventListener("click", copy)
-    snippet.appendChild(button)
-  })
+  snippets.forEach((snippet) => {
+    const button = document.createElement("button");
+    button.textContent = "Copy";
+    button.classList.add("copy-code");
+    button.addEventListener("click", copy);
+    snippet.appendChild(button);
+  });
 </script>

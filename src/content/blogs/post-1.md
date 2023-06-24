@@ -32,6 +32,12 @@ func main() {
 }
 ```
 
+> Some content
+
+*Some more content*
+
+~Hack~
+
 ## JavaScript
 
 ```js
