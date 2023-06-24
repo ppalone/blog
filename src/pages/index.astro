@@ -6,18 +6,26 @@ import Layout from "@layouts/Layout.astro"
 const blogs = await getCollection("blogs", ({ data }) => {
 	return data.draft === false
 })
+const sorted = blogs.sort((a, b) => a.data.date.getTime() - b.data.date.getTime())
 ---
 
 <Layout
-	title="🌱 Pranjal's digital garden"
+	title="Blog | ppalone"
 	description="Welcome to Pranjal's digital garden"
 >
 	<p>Welcome to Pranjal's digital garden 🌱</p>
 
+	<p>Hi there! I'm Pranjal Alone aka ppalone. I'm full stack web developer. I made this blog to share my learnings with the world.
+
+	</p>
+
 	<!-- Blog posts -->
 	<div>
+		<div>
+			<h2>Blog</h2>
+		</div>
 		{
-			blogs.map(blog => {
+			sorted.map(blog => {
 				return <div>
 					<a href={"/blogs/" + blog.slug}>{blog.data.title}</a>
 				</div>
