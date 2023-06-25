@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {},
     fontFamily: {
-      "sans": ["IBM Plex Sans", "sans-serif"],
+      "sans": ["PT Sans", "sans-serif"],
       "mono": ["Inconsolata", "monospace"]
     }
   },
