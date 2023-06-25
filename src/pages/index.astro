@@ -2,6 +2,7 @@
 import { getCollection, getEntry } from "astro:content"
 
 import Layout from "@layouts/Layout.astro"
+import BlogItem from "@components/astro/BlogItem.astro";
 
 // get all blogs
 const blogs = await getCollection("blogs", ({ data }) => {
@@ -9,7 +10,7 @@ const blogs = await getCollection("blogs", ({ data }) => {
 })
 
 // sort blogs according to date
-const sorted = blogs.sort((a, b) => a.data.date.getTime() - b.data.date.getTime())
+const sorted = blogs.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 
 const intro = await getEntry("info", "intro")
 const { Content: Intro } = await intro.render()
@@ -26,15 +27,15 @@ const { Content: Intro } = await intro.render()
 	<!-- Blog posts -->
 	<div class="my-4">
 		<div>
-			<h2>Blog</h2>
+			<h2 class="text-2xl">Posts</h2>
 		</div>
-		{
-			sorted.map(blog => {
-				return <div>
-					<a href={"/blogs/" + blog.slug}>{blog.data.title}</a>
-				</div>
-			})
-		}
+		<ul class="flex flex-col">
+			{
+				sorted.map(blog => {
+					return <BlogItem blog={blog} />
+				})
+			}
+		</ul>
 	</div>
 	
 </Layout>
