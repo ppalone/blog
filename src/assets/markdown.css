@@ -1,0 +1,35 @@
+.markdown-content pre {
+  padding: 1rem;
+  position: relative;
+}
+
+.markdown-content pre code {
+  font-family: "Inconsolata", "SF Mono", "Consolas", monospace;
+}
+
+.markdown-content p {
+  margin: 1rem 0;
+}
+
+.markdown-content h1,h2,h3,h4,h5,h6 {
+  margin: 1rem 0;
+  font-weight: 700;
+}
+
+.markdown-content h2 {
+  font-size: 2rem;
+}
+
+.markdown-content h3 {
+  font-size: 1.75rem;
+}
+
+.copy-code {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  padding: 0.25rem;
+  border: 1px solid gray;
+  background-color: white;
+  font-size: 12px;
+}

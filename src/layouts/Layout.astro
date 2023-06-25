@@ -1,34 +1,32 @@
 ---
 interface Props {
-  title: string,
-  description: string
+  title: string;
+  description: string;
 }
 import Base from "./Base.astro";
 const { title, description } = Astro.props;
 ---
 
 <Base title={title} description={description}>
-  <!-- root -->
-  <div id="root">
-    <!-- Container -->
-    <div class="container">
-      <!-- Navbar -->
-      <nav>
-        <a href="/">ppalone</a>
-      </nav>
+  <!-- Container -->
+  <div class="container mx-auto flex flex-col h-full">
+    <!-- Navbar -->
+    <nav class="p-4 border-b">
+      <a href="/" class="text-xl font-mono font-bold">ppalone/blog</a>
+    </nav>
 
-      <!-- Main -->
-      <main>
-        <slot />
-      </main>
+    <!-- Main -->
+    <main class="p-4 flex-1">
+      <slot />
+    </main>
 
-      <footer>
-        <div>Copyright &copy; 2023 Pranjal</div>
-        <div>
-          <a href="https://github.com/ppalone/blog">GitHub</a>
-          <a href="/rss">rss</a>
-        </div>
-      </footer>
-    </div>
+    <!-- Footer -->
+    <footer class="p-4 flex justify-between border-t">
+      <div>Copyright &copy; 2023 Pranjal</div>
+      <div>
+        <a class="text-blue-500 border-b border-blue-500" href="https://github.com/ppalone/blog">GitHub</a> |
+        <a class="text-blue-500 border-b border-blue-500" href="/rss">RSS</a>
+      </div>
+    </footer>
   </div>
 </Base>

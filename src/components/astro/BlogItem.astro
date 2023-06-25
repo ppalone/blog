@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { f as format } from "@utils/index"
+
+interface Props {
+  blog: CollectionEntry<"blogs">;
+}
+
+const { blog } = Astro.props;
+---
+
+<li class="py-2 my-3 border-b flex flex-col gap-2 items-start">
+  <a href={"/blogs/" + blog.slug} class="text-xl transition hover:border-b border-black">{blog.data.title}</a>
+  <p class="text-sm text-gray-500">{blog.data.description}</p>
+  <div class="text-sm">
+    {format(blog.data.date)}
+  </div>
+</li>

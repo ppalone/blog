@@ -1,11 +1,14 @@
 <template>
-  <div class="page-headings">
-    <div>
+  <div class="flex flex-col w-full" v-if="headings.length > 0">
+    <div class="px-4 py-2">
       <p>On this page</p>
     </div>
-    <div class="headings">
+    <div class="flex flex-col w-full">
       <a v-for="heading in headings" :href="`#${heading.slug}`"
-        :class="['heading', (current === heading.slug ? 'active' : '')]">
+        :class="[
+          'w-full py-2 px-4 border-l-2 border-gray-100 transition', 
+          (current === heading.slug ? 'bg-gray-100' : '')
+        ]">
         {{ heading.text }}
       </a>
     </div>
@@ -34,10 +37,3 @@ onMounted(() => {
   })
 })
 </script>
-
-<style>
-a.active {
-  background-color: rgb(200, 200, 200);
-  border-left: 2px solid rgb(200, 200, 200);
-}
-</style>
