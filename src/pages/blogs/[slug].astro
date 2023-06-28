@@ -1,78 +1,71 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
-import BlogLayout from "@layouts/BlogLayout.astro";
-import PageHeadings from "@components/vue/PageHeadings.vue";
-import { f as format } from "@utils/index"
+import Layout from "@layouts/layout.astro";
+import MarkdownContent from "@components/astro/markdown-content.astro";
+import PageHeadings from "@components/vue/page-headings.vue";
 
 interface Props {
-  blog: CollectionEntry<"blogs">;
+  blog: CollectionEntry<"blogs">,
 }
 
 export async function getStaticPaths() {
   const blogs = await getCollection("blogs", ({ data }) => {
-    return data.draft === false;
-  });
-  return blogs.map((blog: CollectionEntry<"blogs">) => ({
+    return data.draft === false
+  })
+  return blogs.map(blog => ({
     params: {
       slug: blog.slug,
     },
     props: {
       blog: blog,
-    },
-  }));
+    }
+  }))
 }
 
 const { blog } = Astro.props;
-const { Content, headings } = await blog.render();
+const { headings } = await blog.render()
 ---
 
-<BlogLayout title={blog.data.title} description={blog.data.description}>
-  <div>
-    <header>
-      <h1 class="text-4xl font-bold py-2">{blog.data.title}</h1>
-      <div>
-        {format(blog.data.date)}
-      </div>
-    </header>
-    <div class="flex gap-2 items-start">
-      <div class="markdown-content w-full md:w-4/5">
-        <Content />
-      </div>
-      <div class="p-2 hidden overflow-y-auto md:flex md:w-1/5 md:sticky md:top-0">
-        <PageHeadings client:load headings={headings} />
-      </div>
+<Layout
+  title={blog.data.title}
+  description={blog.data.description}
+>
+  <div class="flex items-start w-full my-4">
+    <div class="w-full md:w-4/5 p-4">
+      <MarkdownContent blog={blog} />
     </div>
-    <div class="my-2">
-      <a href="/" title="Go home" class="font-mono p-1 bg-gray-100 rounded"
-        >cd ..</a
-      >
+    <div class="hidden md:block md:w-1/5 p-4 sticky top-2">
+      <PageHeadings headings={headings} client:visible />
     </div>
   </div>
-</BlogLayout>
+</Layout>
 
 <script>
-  const snippets = document.querySelectorAll(".markdown-content pre");
+  // Copy code
+  window.onload = function () {
 
-  const copy = async (e) => {
-    const code = e.target.parentElement.querySelector("code");
-    try {
-      await navigator.clipboard.writeText(code.textContent);
-      e.target.textContent = "Copied!";
-      setTimeout(() => {
-        e.target.textContent = "Copy";
-      }, 1500);
-    } catch (err) {
-      console.error(err);
+    async function copy(e) {
+      try {
+        const snippet = e.target.parentElement.querySelector("code")
+        e.target.textContent = "Copied!"
+        await navigator.clipboard.writeText(snippet.textContent)
+        setTimeout(() => {
+          e.target.textContent = "Copy"
+        }, 1500)
+      } catch (err) {
+        console.error(err)
+      }
     }
-  };
 
-  snippets.forEach((snippet) => {
-    const button = document.createElement("button");
-    button.textContent = "Copy";
-    button.classList.add("copy-code");
-    button.addEventListener("click", copy);
-    snippet.appendChild(button);
-  });
+    const snippets = document.querySelectorAll(".markdown-content pre")
+    snippets.forEach(snippet => {
+      const btn = document.createElement("button")
+      btn.textContent = "Copy"
+      btn.classList.add("copy-code")
+      btn.addEventListener("click", copy)
+      snippet.appendChild(btn)
+    })
+  }
 </script>

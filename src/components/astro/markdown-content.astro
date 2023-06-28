@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { formatDate } from "@utils/format";
+
+import "@assets/markdown.css";
+
+interface Props {
+  blog: CollectionEntry<"blogs">;
+}
+
+const { blog } = Astro.props;
+const { Content } = await blog.render();
+---
+
+<article>
+  <header>
+    <h1 class="text-4xl font-bold">
+      {blog.data.title}
+    </h1>
+
+    <div class="flex gap-2 my-4">
+      <span>{formatDate(blog.data.date)}</span>
+      <span>&bull;</span>
+    </div>
+
+    <p class="my-4">{blog.data.description}</p>
+  </header>
+
+  <section class="markdown-content">
+    <Content />
+  </section>
+
+</article>

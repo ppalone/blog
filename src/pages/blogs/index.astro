@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+
+import BlogList from "@components/astro/blog-list.astro";
+import Layout from "@layouts/layout.astro";
+
+const blogs = await getCollection("blogs", ({ data }) => {
+  return data.draft === false;
+})
+---
+
+<Layout title="ppalone/blog" description="🌱 Pranjal's digital garden">
+  <div class="inner-container">
+
+    <!-- header -->
+    <h3 class="text-4xl font-bold border-b py-4">Blog</h3>
+
+    <!-- blog list -->
+    <BlogList blogs={blogs} />
+
+  </div>
+</Layout>

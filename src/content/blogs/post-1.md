@@ -1,26 +1,33 @@
 ---
-title: "Post 1"
-description: "Post 1 desc"
-date: 2023-06-24
+title: "Sample Lorem ipsum dolor sit amet, consectetur adipisicing elit"
+description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit Amet behe"
+date: 2023-06-26
 ---
-
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi corrupti modi qui suscipit nemo quos, dignissimos consequuntur culpa aspernatur fugiat vitae sapiente ipsum fugit laborum veritatis pariatur perferendis eius earum!
-
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi corrupti modi qui suscipit nemo quos, dignissimos consequuntur culpa aspernatur fugiat vitae sapiente ipsum fugit laborum veritatis pariatur perferendis eius earum!
-
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi corrupti modi qui suscipit nemo quos, dignissimos consequuntur culpa aspernatur fugiat vitae sapiente ipsum fugit laborum veritatis pariatur perferendis eius earum!
 
 ## Overview
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi corrupti modi qui suscipit nemo quos, dignissimos consequuntur culpa aspernatur fugiat vitae sapiente ipsum fugit laborum veritatis pariatur perferendis eius earum!
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, ab corrupti odit illum accusantium quibusdam maxime? Quas, enim au Velit ipsum aliquid facere perspiciatis ut neque iusto reprehenderit deleniti accusamus
 
-## Installation
+## Heading
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi corrupti modi qui suscipit nemo quos, dignissimos consequuntur culpa aspernatur fugiat vitae sapiente ipsum fugit laborum veritatis pariatur perferendis eius earum!
+Some text content
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi corrupti modi qui suscipit nemo quos, dignissimos consequuntur culpa aspernatur fugiat vitae sapiente ipsum fugit laborum veritatis pariatur perferendis eius earum!
+## Another Heading 
 
-Some more content
+Install astro with the following command
+
+```
+npm create astro@latest
+```
+
+### Heading level 3
+
+Hello World
+
+Italic: _hack_  
+Bold: **hack**
+
+> Hello World
 
 ```go
 package main
@@ -28,20 +35,13 @@ package main
 import "fmt"
 
 func main() {
-  fmt.Println("Hello World")
+  console.log("Hello World")
 }
 ```
 
-> Some content
+## Table
 
-*Some more content*
-
-~Hack~
-
-## JavaScript
-
-```js
-for (let i = 0; i < 10; i++) {
-  console.log(i)
-}
-```
+| Column 1 | Column 2 |
+| --- | --- |
+| Data 1 | Data 2 | 
+| Data 3 | Data 4 |

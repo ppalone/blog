@@ -11,12 +11,6 @@ const blogs = defineCollection({
   })
 })
 
-// info collection
-const info = defineCollection({
-  type: "content",
-})
-
 export const collections = {
   blogs,
-  info
 }

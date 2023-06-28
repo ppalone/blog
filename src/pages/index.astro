@@ -1,41 +1,40 @@
 ---
-import { getCollection, getEntry } from "astro:content"
+import { getCollection } from "astro:content";
 
-import Layout from "@layouts/Layout.astro"
-import BlogItem from "@components/astro/BlogItem.astro";
+import Layout from "@layouts/layout.astro";
+import BlogList from "@components/astro/blog-list.astro";
 
-// get all blogs
 const blogs = await getCollection("blogs", ({ data }) => {
-	return data.draft === false
-})
-
-// sort blogs according to date
-const sorted = blogs.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-
-const intro = await getEntry("info", "intro")
-const { Content: Intro } = await intro.render()
+  return data.draft === false;
+});
 ---
 
-<Layout
-	title="ppalone/blog"
-	description="Welcome to Pranjal's digital garden"
->
-	<p class="my-4">
-		<Intro />
-	</p>
+<Layout title="ppalone/blog" description="👨‍🚀 Pranjal's digital garden 🌱">
+  <div class="inner-container">
+    <!-- header -->
+    <header>
+      <p class="my-4">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, ab
+        corrupti odit illum accusantium quibusdam maxime? Quas, enim aut. Velit
+        ipsum aliquid facere perspiciatis ut neque iusto reprehenderit deleniti
+        accusamus. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Officiis dolores necessitatibus facilis eum consequuntur soluta fugit
+        libero, laborum est! Nesciunt earum velit maiores excepturi quam
+        reiciendis possimus beatae quasi officiis.
+      </p>
+    </header>
 
-	<!-- Blog posts -->
-	<div class="my-4">
-		<div>
-			<h2 class="text-2xl">Posts</h2>
-		</div>
-		<ul class="flex flex-col">
-			{
-				sorted.map(blog => {
-					return <BlogItem blog={blog} />
-				})
-			}
-		</ul>
-	</div>
-	
+    <!-- Blog -->
+    <div class="my-4">
+      <h3 class="text-4xl font-bold">Blog</h3>
+
+      <!-- recent blogs -->
+      <BlogList blogs={blogs} />   
+      
+      <div>
+        <a href="/blogs" class="link">View all blogs</a>
+      </div>
+
+    </div>
+  </div>
 </Layout>

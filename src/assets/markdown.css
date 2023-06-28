@@ -1,35 +1,41 @@
-.markdown-content pre {
-  padding: 1rem;
-  position: relative;
-}
-
-.markdown-content pre code {
-  font-family: "Inconsolata", "SF Mono", "Consolas", monospace;
-}
-
 .markdown-content p {
-  margin: 1rem 0;
+  @apply my-4
 }
 
-.markdown-content h1,h2,h3,h4,h5,h6 {
-  margin: 1rem 0;
-  font-weight: 700;
+.markdown-content pre {
+  @apply p-4 text-sm rounded-sm relative my-4
+}
+
+.markdown-content h1,
+h2,
+h3 {
+  @apply my-4
+}
+
+.markdown-content h1 {
+  @apply text-4xl
 }
 
 .markdown-content h2 {
-  font-size: 2rem;
+  @apply text-2xl font-bold
 }
 
 .markdown-content h3 {
-  font-size: 1.75rem;
+  @apply text-xl font-bold
 }
 
-.copy-code {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  padding: 0.25rem;
-  border: 1px solid gray;
-  background-color: white;
-  font-size: 12px;
+.markdown-content .copy-code {
+  @apply border text-sm rounded-sm p-2 absolute top-1 right-1 bg-white
+}
+
+.markdown-content blockquote {
+  @apply p-4 border bg-gray-50 border-l-4 rounded-sm my-4
+}
+
+.markdown-content table {
+  @apply w-full
+}
+
+.markdown-content table th, td {
+  @apply p-2 border
 }
