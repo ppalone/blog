@@ -4,8 +4,7 @@ export default {
   theme: {
     extend: {},
     fontFamily: {
-      "sans": ["PT Sans", "sans-serif"],
-      "mono": ["Inconsolata", "monospace"]
+      "sans": ["Lato", "sans-serif"],
     }
   },
   plugins: [],

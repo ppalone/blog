@@ -6,7 +6,7 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   markdown: {
     shikiConfig: {
-      theme: "dracula-soft",
+      theme: "github-dark",
       wrap: true,
     }
   },

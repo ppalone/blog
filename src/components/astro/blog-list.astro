@@ -1,0 +1,13 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+import BlogItem from "./blog-item.astro";
+
+interface Props {
+  blogs: CollectionEntry<"blogs">[]
+}
+const { blogs } = Astro.props;
+---
+<ul class="flex flex-col gap-2 py-4">
+  {blogs.map(blog => <BlogItem blog={blog} />)}
+</ul>

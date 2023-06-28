@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { formatDate } from "@utils/format"
+interface Props {
+  blog: CollectionEntry<"blogs">
+}
+const { blog } = Astro.props;
+---
+
+<li class="py-4 border-b">
+  <a href={"/blogs/" + blog.slug} class="font-bold text-2xl transition">{blog.data.title}</a>  
+  <div class="flex items-center gap-2 my-2 text-sm">
+    <span>{formatDate(blog.data.date)}</span>
+    <span>&bull;</span>
+    <span class="p-1 bg-purple-600 text-white rounded">Uncategorized</span>
+  </div>
+  <p class="text-gray-500">{blog.data.description}</p>
+  <div>
+    <a href={"/blogs/" + blog.slug} class="link">Read more ...</a>
+  </div>
+</li>
