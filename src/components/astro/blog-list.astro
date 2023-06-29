@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry } from "astro:content";
+import { CollectionEntry, getCollection } from "astro:content";
 
 import BlogItem from "./blog-item.astro";
 
@@ -7,7 +7,14 @@ interface Props {
   blogs: CollectionEntry<"blogs">[]
 }
 const { blogs } = Astro.props;
+const folders = await getCollection("folders")
+
+const map = new Map<string, CollectionEntry<"folders">>();
+folders.forEach(folder => {
+  map.set(folder.id, folder)
+});
 ---
-<ul class="flex flex-col gap-2 py-4">
-  {blogs.map(blog => <BlogItem blog={blog} />)}
+
+<ul class="flex flex-col gap-2">
+  {blogs.map(blog => <BlogItem blog={blog} map={map} />)}
 </ul>

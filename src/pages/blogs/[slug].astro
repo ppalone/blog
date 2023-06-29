@@ -35,6 +35,9 @@ const { headings } = await blog.render()
   <div class="flex items-start w-full my-4">
     <div class="w-full md:w-4/5 p-4">
       <MarkdownContent blog={blog} />
+      <div class="my-4">
+        <a href="/blogs/" class="font-mono p-2 bg-gray-100">cd ..</a>
+      </div>
     </div>
     <div class="hidden md:block md:w-1/5 p-4 sticky top-2">
       <PageHeadings headings={headings} client:visible />

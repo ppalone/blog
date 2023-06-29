@@ -46,7 +46,3 @@ func main() {
 | --- | --- |
 | Data 1 | Data 2 | 
 | Data 3 | Data 4 |
-
-## Link
-
-Here over to my [website](https://ppalone.me)

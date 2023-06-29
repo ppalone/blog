@@ -39,3 +39,7 @@ h3 {
 .markdown-content table th, td {
   @apply p-2 border
 }
+
+.markdown-content a {
+  @apply text-blue-500 border-b
+}

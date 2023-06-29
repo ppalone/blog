@@ -1,0 +1,24 @@
+---
+import type { Folder } from "@types/folder"
+
+interface Props {
+  folders: Map<string, Folder>
+}
+
+const { folders } = Astro.props;
+---
+
+<div class="flex flex-col">
+  {[...folders].map(([id, folder]) => {
+    return <div class="flex items-center my-2 gap-2">
+      <a href={"/folders/" + id} class="w-15 h-15 flex flex-col items-center border rounded-sm bg-gray-50 p-2">
+        <span>{folder.blogs.length}</span>
+        <span>{`Post${folder.blogs.length > 1 ? 's' : '' }`}</span>
+      </a>
+      <div>
+        <a href={"/folders/" + id} class="text-lg">{folder.data.data.name}</a>
+        <p class="text-sm text-gray-500">{folder.data.data.description}</p>
+      </div>  
+    </div>
+  })}
+</div>
