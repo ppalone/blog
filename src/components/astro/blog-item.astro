@@ -3,8 +3,9 @@ import type { CollectionEntry } from "astro:content";
 import { formatDate } from "@utils/format"
 interface Props {
   blog: CollectionEntry<"blogs">
+  map: Map<string, CollectionEntry<"folders">>,
 }
-const { blog } = Astro.props;
+const { blog, map } = Astro.props;
 ---
 
 <li class="py-4 border-b">
@@ -12,7 +13,7 @@ const { blog } = Astro.props;
   <div class="flex items-center gap-2 my-2 text-sm">
     <span>{formatDate(blog.data.date)}</span>
     <span>&bull;</span>
-    <span class="p-1 bg-purple-600 text-white rounded">Uncategorized</span>
+    <a href={"/folders/" + blog.data.folder.id} class="py-1 px-2 bg-purple-600 text-white rounded">{map.get(blog.data.folder.id).data.name}</a>
   </div>
   <p class="text-gray-500">{blog.data.description}</p>
   <div>

@@ -1,0 +1,46 @@
+---
+import { CollectionEntry, getCollection } from "astro:content";
+
+import Layout from "@layouts/layout.astro";
+import BlogList from "@components/astro/blog-list.astro";
+
+interface Props {
+  folder: CollectionEntry<"folders">,
+}
+
+export async function getStaticPaths() {
+  const folders = await getCollection("folders")
+  return folders.map(folder => ({
+    params: {
+      id: folder.id,
+    },
+    props: {
+      folder: folder,
+    }
+  }))
+}
+
+const { folder } = Astro.props;
+const blogs = await getCollection("blogs", ({ data }) => {
+  return data.draft === false && data.folder.id === folder.id
+});
+const map = new Map<string, CollectionEntry<"folders">>();
+map.set(folder.id, folder)
+---
+
+<Layout
+  title={folder.data.name}
+  description={`📂 ${folder.data.description}`}
+>
+  <div class="inner-container">
+    <header>
+      <h2 class="my-4 py-4 border-b text-2xl font-bold">📂 {folder.data.name}</h2>
+      <p>{folder.data.description}</p>
+    </header>
+
+    <div class="flex flex-col">
+      <h3 class="mt-4 pb-2 text-2xl font-bold border-b">Posts</h3>
+      <BlogList blogs={blogs} />
+    </div>
+  </div>
+</Layout>

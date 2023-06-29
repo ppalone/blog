@@ -1,0 +1,48 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+import Layout from "@layouts/layout.astro";
+import FolderList from "@components/astro/folder-list.astro";
+import type { Folder } from "@types/folder"
+
+const folders = await getCollection("folders")
+const blogs = await getCollection("blogs", ({ data }) => {
+  return data.draft === false;
+})
+const map = new Map<string, Folder>();
+
+folders.map((folder: CollectionEntry<"folders">) => {
+  const data: Folder = {
+    blogs: [],
+    data: folder,
+  }
+  map.set(folder.id, data)
+})
+
+blogs.map((blog: CollectionEntry<"blogs">) => {
+  if (map.has(blog.data.folder.id)) {
+    const data = map.get(blog.data.folder.id)
+    if (data) {
+      data?.blogs.push(blog)
+      map.set(blog.data.folder.id, data);
+    }
+  }
+})
+
+---
+
+<Layout
+  title="ppalone/blog"
+  description="Folders"
+>
+  <div class="inner-container">
+    <header>
+      <h2 class="my-4 py-4 text-2xl fold-bold border-b">📂 Folders</h1>
+    </header>
+
+    <div>
+      <FolderList folders={map} />
+    </div>
+  </div>
+</Layout>

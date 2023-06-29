@@ -1,5 +1,10 @@
 ---
-import type { CollectionEntry } from "astro:content";
+import {
+  CollectionEntry,
+  getCollection,
+  getEntries,
+  getEntry,
+} from "astro:content";
 import { formatDate } from "@utils/format";
 
 import "@assets/markdown.css";
@@ -9,7 +14,13 @@ interface Props {
 }
 
 const { blog } = Astro.props;
+const folder = await getEntry("folders", blog.data.folder.id);
+const blogs = await getCollection("blogs", ({ data }) => {
+  return data.draft === false && data.folder.id === folder.id;
+});
 const { Content } = await blog.render();
+const current = blog;
+const UNCATEGORIZED = "uncategorized";
 ---
 
 <article>
@@ -18,16 +29,49 @@ const { Content } = await blog.render();
       {blog.data.title}
     </h1>
 
-    <div class="flex gap-2 my-4">
+    <div class="flex gap-2 my-4 items-center">
       <span>{formatDate(blog.data.date)}</span>
       <span>&bull;</span>
+      <a href={"/folders/" + folder.id} class="folder">{folder.data.name}</a>
     </div>
 
     <p class="my-4">{blog.data.description}</p>
   </header>
 
+  { (folder.id !== UNCATEGORIZED) &&
+    (
+      <div class="flex flex-col border rounded-sm">
+        <div class="p-2 text-lg flex items-center gap-2 border-b text-lg">
+          📂 {folder.data.name}
+        </div>
+        {blogs.map((blog, idx) => {
+          return (
+            <a
+              href={"/blogs/" + blog.slug}
+              class:list={[
+                "p-2 flex items-center gap-2 border-t bg-gray-50",
+                blog.id === current.id ? "font-bold" : "",
+              ]}
+            >
+              <span
+                class:list={[
+                  "w-8 h-8 border rounded-full flex items-center justify-center",
+                  blog.id === current.id
+                    ? "bg-blue-500 text-white border-blue-500"
+                    : "bg-white",
+                ]}
+              >
+                {idx + 1}
+              </span>
+              <span>{blog.data.title}</span>
+            </a>
+          );
+        })}
+      </div>
+    )
+  }
+
   <section class="markdown-content">
     <Content />
   </section>
-
 </article>

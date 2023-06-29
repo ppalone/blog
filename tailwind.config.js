@@ -5,6 +5,7 @@ export default {
     extend: {},
     fontFamily: {
       "sans": ["Lato", "sans-serif"],
+      "mono": ["Fira Code", "Monaco", "Consolas", "monospace"]
     }
   },
   plugins: [],
