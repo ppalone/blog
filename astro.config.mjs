@@ -16,5 +16,6 @@ export default defineConfig({
     tailwind({
       configFile: "./tailwind.config.js"
     })
-  ]
+  ],
+  site: "https://blog.ppalone.me/"
 });
