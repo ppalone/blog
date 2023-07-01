@@ -14,14 +14,20 @@ const blogs = await getCollection("blogs", ({ data }) => {
     <!-- header -->
     <header>
       <p class="my-4">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, ab
-        corrupti odit illum accusantium quibusdam maxime? Quas, enim aut. Velit
-        ipsum aliquid facere perspiciatis ut neque iusto reprehenderit deleniti
-        accusamus. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        Officiis dolores necessitatibus facilis eum consequuntur soluta fugit
-        libero, laborum est! Nesciunt earum velit maiores excepturi quam
-        reiciendis possimus beatae quasi officiis.
+        Hi I'm Pranjal. I'm a Full stack web developer. I mostly built things
+        using JavaScript, NodeJS & Golang. I made this blog to share what I
+        learn while building new things.
       </p>
+      <p>You can find my socials below:</p>
+      <ul>
+        <li>
+          Twitter: <a class="link" href="https://twitter.com/@ppaxyz"
+            >@ppaxyz</a>
+        </li>
+        <li>
+          GitHub: <a class="link" href="https://github.com/ppalone">@ppalone</a>
+        </li>
+      </ul>
     </header>
 
     <!-- Blog -->
@@ -29,12 +35,11 @@ const blogs = await getCollection("blogs", ({ data }) => {
       <h3 class="text-4xl font-bold">Blog</h3>
 
       <!-- recent blogs -->
-      <BlogList blogs={blogs} />   
-      
+      <BlogList blogs={blogs} />
+
       <div class="my-4">
         <a href="/blogs" class="link">View all blogs</a>
       </div>
-
     </div>
   </div>
 </Layout>
