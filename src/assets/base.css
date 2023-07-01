@@ -8,12 +8,12 @@ html {
 
 @layer components {
   .link {
-    @apply text-blue-500
+    @apply text-pink-400
   }
   .inner-container {
     @apply w-full mx-auto p-4 sm:w-4/5 md:w-3/4 lg:w-1/2
   }
   .folder {
-    @apply py-1 px-2 bg-purple-600 text-white rounded
+    @apply py-1 px-2 bg-pink-400 text-white rounded
   }
 }

@@ -17,6 +17,9 @@
       ],
       "@types/*": [
         "src/types/*"
+      ],
+      "@composables/*": [
+        "src/composables/*"
       ]
     }
   }

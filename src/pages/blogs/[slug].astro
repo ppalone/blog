@@ -7,36 +7,33 @@ import MarkdownContent from "@components/astro/markdown-content.astro";
 import PageHeadings from "@components/vue/page-headings.vue";
 
 interface Props {
-  blog: CollectionEntry<"blogs">,
+  blog: CollectionEntry<"blogs">;
 }
 
 export async function getStaticPaths() {
   const blogs = await getCollection("blogs", ({ data }) => {
-    return data.draft === false
-  })
-  return blogs.map(blog => ({
+    return data.draft === false;
+  });
+  return blogs.map((blog) => ({
     params: {
       slug: blog.slug,
     },
     props: {
       blog: blog,
-    }
-  }))
+    },
+  }));
 }
 
 const { blog } = Astro.props;
-const { headings } = await blog.render()
+const { headings } = await blog.render();
 ---
 
-<Layout
-  title={blog.data.title}
-  description={blog.data.description}
->
+<Layout title={blog.data.title} description={blog.data.description}>
   <div class="flex items-start w-full my-4">
     <div class="w-full md:w-4/5 p-4">
       <MarkdownContent blog={blog} />
       <div class="my-4">
-        <a href="/blogs/" class="font-mono p-2 bg-gray-100">cd ..</a>
+        <a href="/blogs/" class="font-mono p-2 rounded-sm bg-gray-100 dark:bg-slate-600">cd ..</a>
       </div>
     </div>
     <div class="hidden md:block md:w-1/5 p-4 sticky top-2">
@@ -46,29 +43,25 @@ const { headings } = await blog.render()
 </Layout>
 
 <script>
-  // Copy code
-  window.onload = function () {
-
-    async function copy(e) {
-      try {
-        const snippet = e.target.parentElement.querySelector("code")
-        e.target.textContent = "Copied!"
-        await navigator.clipboard.writeText(snippet.textContent)
-        setTimeout(() => {
-          e.target.textContent = "Copy"
-        }, 1500)
-      } catch (err) {
-        console.error(err)
-      }
+  async function copy(e) {
+    try {
+      const snippet = e.target.parentElement.querySelector("code");
+      e.target.textContent = "Copied!";
+      await navigator.clipboard.writeText(snippet.textContent);
+      setTimeout(() => {
+        e.target.textContent = "Copy";
+      }, 1500);
+    } catch (err) {
+      console.error(err);
     }
-
-    const snippets = document.querySelectorAll(".markdown-content pre")
-    snippets.forEach(snippet => {
-      const btn = document.createElement("button")
-      btn.textContent = "Copy"
-      btn.classList.add("copy-code")
-      btn.addEventListener("click", copy)
-      snippet.appendChild(btn)
-    })
   }
+
+  const snippets = document.querySelectorAll(".markdown-content pre");
+  snippets.forEach((snippet) => {
+    const btn = document.createElement("button");
+    btn.textContent = "Copy";
+    btn.classList.add("copy-code");
+    btn.addEventListener("click", copy);
+    snippet.appendChild(btn);
+  });
 </script>
