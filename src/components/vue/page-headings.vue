@@ -6,7 +6,7 @@
       v-for="(heading, idx) in headings" 
       :key="idx"
       :class="[
-        'py-2 pl-4 border-l-4',
+        'py-2 pl-4 border-l-4 dark:border-slate-600',
         (current == heading.slug ? 'active' : '')
       ]"
         :href="`#${heading.slug}`" 
@@ -52,6 +52,6 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .active {
-  @apply bg-gray-200
+  @apply bg-gray-200 dark:bg-slate-600
 }
 </style>

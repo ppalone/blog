@@ -13,9 +13,9 @@ const { blog, map } = Astro.props;
   <div class="flex items-center gap-2 my-2 text-sm">
     <span>{formatDate(blog.data.date)}</span>
     <span>&bull;</span>
-    <a href={"/folders/" + blog.data.folder.id} class="py-1 px-2 bg-purple-600 text-white rounded">{map.get(blog.data.folder.id).data.name}</a>
+    <a href={"/folders/" + blog.data.folder.id} class="folder">{map.get(blog.data.folder.id).data.name}</a>
   </div>
-  <p class="text-gray-500">{blog.data.description}</p>
+  <p class="text-gray-500 dark:text-gray-300">{blog.data.description}</p>
   <div>
     <a href={"/blogs/" + blog.slug} class="link">Read more ...</a>
   </div>

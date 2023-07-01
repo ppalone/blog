@@ -16,6 +16,9 @@ const { title, description } = Astro.props;
     <meta name="description" content={description} />
     <title>{title}</title>
 
+    <!-- Theme JavaScript -->
+    <script is:inline src="/theme.js"></script>
+
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,8 +26,9 @@ const { title, description } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Lato:wght@400;700&display=swap"
       rel="stylesheet"
     />
+
   </head>
-  <body class="h-full">
+  <body class="h-full transition dark:bg-slate-800 dark:text-white">
     <slot />
   </body>
 </html>
