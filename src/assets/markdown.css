@@ -3,7 +3,7 @@
 }
 
 .markdown-content pre {
-  @apply p-4 text-sm rounded-sm relative my-4 border
+  @apply p-4 text-sm rounded-sm relative
 }
 
 .markdown-content h1,
@@ -66,4 +66,17 @@ h3 {
 
 .markdown-content ul li {
   @apply list-disc my-4
+}
+
+.markdown-content .remark-code-container {
+  @apply flex flex-col items-start 
+}
+
+.markdown-content .remark-code-container pre {
+  @apply w-full rounded-tl-none
+}
+
+.markdown-content .remark-code-title {
+  background-color: #24292e;
+  @apply font-mono text-sm p-4 text-white rounded-sm rounded-bl-none rounded-br-none
 }

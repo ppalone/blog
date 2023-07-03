@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import vue from "@astrojs/vue";
 import tailwind from "@astrojs/tailwind";
+import remarkFlexibleCode from "remark-flexible-code-titles";
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,7 +10,8 @@ export default defineConfig({
     shikiConfig: {
       theme: "github-dark",
       wrap: true,
-    }
+    },
+    remarkPlugins: [remarkFlexibleCode]
   },
   integrations: [
     vue(), 

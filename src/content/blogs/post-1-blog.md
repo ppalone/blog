@@ -119,8 +119,7 @@ The `src/pages/` subdirectory is responsible for all pages of your application. 
 
 For example create a `about.html` in `src/pages/` subdirectory, write below html & go to [http://localhost:3000/about](http://localhost:3000/about)
 
-```html
-<!-- src/pages/about.html -->
+```html:src/pages/about.html
 <h1>About Page</h1>
 ```
 
@@ -139,7 +138,7 @@ Astro can read your markdown files in `src/pages/` subdirectory and automaticall
 
 For example, create a `markdown.md` files in `src/pages/` and copy the below markdown content and paste into the created file. 
 
-```md
+```md:src/pages/markdown.md
 # Markdown sample 
 
 This is **Markdown** content
