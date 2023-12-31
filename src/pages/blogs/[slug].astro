@@ -29,7 +29,7 @@ const { headings } = await blog.render();
 ---
 
 <Layout title={blog.data.title} description={blog.data.description}>
-  <div class="flex items-start w-full my-4">
+  <div class="flex items-start w-full mx-auto my-4 md:w-4/5 xl:w-3/5">
     <div class="w-full md:w-4/5 p-4">
       <MarkdownContent blog={blog} />
       <div class="my-4">

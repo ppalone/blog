@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <p class="font-bold text-lg py-4 my-2">🖇 On this page</p>
+    <p class="font-bold text-lg py-4 my-2">On this page</p>
     <div class="flex flex-col">
       <a 
       v-for="(heading, idx) in headings" 
