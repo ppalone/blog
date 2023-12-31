@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {},
     fontFamily: {
-      "sans": ["Lato", "sans-serif"],
+      "sans": ["Outfit", "sans-serif"],
       "mono": ["Fira Code", "Monaco", "Consolas", "monospace"]
     }
   },
