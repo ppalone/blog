@@ -6,6 +6,11 @@ html {
   scroll-behavior: smooth;
 }
 
+@font-face {
+  font-family: "Satoshi";
+  src: url('/fonts/Satoshi-Variable.woff2');
+}
+
 @layer components {
   .link {
     @apply text-pink-400
