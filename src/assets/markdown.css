@@ -45,7 +45,7 @@ h3 {
 }
 
 .code {
-  @apply font-mono text-sm py-1 px-2 bg-gray-100 dark:bg-slate-600 rounded-sm
+  @apply font-mono text-sm p-1 bg-gray-100 dark:bg-slate-600 rounded-sm
 }
 
 .markdown-content p > code {
