@@ -52,29 +52,6 @@ npm create astro@latest
 
 After running above command, you will get some interactive prompts on your command line. Just follow the prompts & you will be ready to go.
 
-```
-   dir   Where should we create your new project?
-         ./build-a-blog
-
-  tmpl   How would you like to start your new project?
-         Empty
-      ✔  Template copied
-
-  deps   Install dependencies?
-         Yes
- ██████  Dependencies installing with npm...
-      ✔  Dependencies installed
-
-    ts   Do you plan to write TypeScript?
-         No
-      ◼  No worries! TypeScript is supported in Astro by default,
-         but you are free to continue writing JavaScript instead.
-
-   git   Initialize a new git repository?
-         No
-      ◼  Sounds good! You can always run git init manually.
-```
-
 Just `cd` into your directory and run the below command to run your newly created Astro project.
 
 ```
